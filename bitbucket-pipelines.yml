@@ -1,0 +1,24 @@
+image:
+  name: docker.dev.creitive.com/build/webapp:1.3
+  username: $DOCKER_REPO_USERNAME
+  password: $DOCKER_REPO_PASSWORD
+  email: development@creitive.com
+
+options:
+  max-time: 5
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - composer
+          - node
+        script:
+          - composer validate
+          - composer install --no-plugins --no-scripts
+          - if [[ -e composer.lock ]]; then php vendor/bin/security-checker security:check composer.lock; fi
+          - php vendor/bin/phpcs -n
+          - php vendor/bin/phpunit
+          - bundle install --path=.bundler
+          - yarn install --pure-lockfile
+          - ./node_modules/.bin/gulp

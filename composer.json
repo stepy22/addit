@@ -1,0 +1,100 @@
+{
+    "name": "creitive/corporate-cms",
+    "description": "Addit",
+    "license": "proprietary",
+    "type": "project",
+    "require": {
+        "php": ">=7.0.0",
+        "ext-imagick": "*",
+        "arthurhoaro/favicon": "^1.2",
+        "camroncade/timezone": "^0.1.0",
+        "cartalyst/sentinel": "^2.0",
+        "creitive/monolog-extra-data-processor": "^1.0",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "doctrine/dbal": "^2.5",
+        "euskadi31/opengraph": "^1.0",
+        "facebook/graph-sdk": "^5.6",
+        "geoip2/geoip2": "^2.9",
+        "google/apiclient": "^2.2",
+        "google/recaptcha": "^1.2",
+        "graham-campbell/markdown": "^10.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "hshn/base64-encoded-file": "^1.0",
+        "inani/oxfordapi-wrapper": "^1.1",
+        "laravel/framework": "5.5.*",
+        "laravel/socialite": "^3.0",
+        "laravel/tinker": "^1.0",
+        "laravelcollective/html": "5.5.*",
+        "league/tactician": "^1.0",
+        "mailchimp/mailchimp": "^2.0",
+        "miljar/php-exif": "^0.4.0",
+        "mremi/url-shortener": "^2.1",
+        "ramsey/uuid": "^3.7",
+        "schuppo/password-strength": "~1.5",
+        "sentry/sentry": "^1.7",
+        "simplesoftwareio/simple-qrcode": "^2.0",
+        "sly/notification-pusher": "^2.2",
+        "stripe/stripe-php": "^5.9",
+        "tijsverkoyen/css-to-inline-styles": "^2.2",
+        "torann/geoip": "^1.0",
+        "urbanairship/urbanairship": "^0.3.0",
+        "voku/simple_html_dom": "^4.1",
+        "wapmorgan/file-type-detector": "^1.1"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
+        "escapestudios/symfony2-coding-standard": "^2.9",
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "~1.0",
+        "phpspec/phpspec": "~2.1",
+        "phpunit/phpunit": "~6.0",
+        "sensiolabs/security-checker": "^4.0",
+        "spryker/code-sniffer": "^0.6.8",
+        "squizlabs/php_codesniffer": "^2.5"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Creitive\\": "src/Creitive"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "tests/App/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php artisan clear-compiled"
+        ],
+        "pre-update-cmd": [
+            "@php artisan clear-compiled"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
